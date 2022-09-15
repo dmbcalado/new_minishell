@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 07:30:34 by anfreire          #+#    #+#             */
-/*   Updated: 2022/09/14 22:21:53 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:50:48 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ void	run_one_cmd(t_data *data, int in_fd, int out_fd)
 		exit (0);
 	}
 	data->ids.id = fork();
-	if (!data->ids.id)
+	printf("data ids: %d\n", data->ids.id);
+	if (data->ids.id == 0)
 		execve (data->paths.path_cmd[0], data->cmd.cmdx[0], data->envp);
 	else
 	{
-		wait (NULL);
+		waitpid(data->ids.id, NULL, 0);
 		if (out_fd != STDOUT_FILENO)
 			dup2 (out_fd, STDOUT_FILENO);
 		free_cmds (data);

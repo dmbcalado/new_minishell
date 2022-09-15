@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 06:49:28 by anfreire          #+#    #+#             */
-/*   Updated: 2022/09/14 23:39:45 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:52:01 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ int	main(int argc, char *argv[], char *envp[])
 			redirect(&data);
 			brain (&data);
 			free_line_info (&data);
+			printf("papa\n");
 		}
 	}
 	return (0);
-
 }
