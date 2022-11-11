@@ -44,3 +44,13 @@ int	len_str(char *str)
 		i++;
 	return (i);
 }
+
+char	*str_cpy(char *dest, char *str)
+{
+	int i;
+
+	i = -1;
+	while (str[++i])
+		dest[i] = str[i];
+	return (dest);
+}

@@ -1,0 +1,13 @@
+falta conseguir fazer esta implementacao
+que eu considero essencial porque assim
+nao corremos todos os cmds de "seguida"
+e os pipes iam atrofiar com os builtins
+como estava. No entanto nao e assim tao
+facilmente simplificavel o que queria
+ja percebi que o problema vem de fazer
+o piping assim porque o primeiro elemento atrofia
+e provavelmente mais alguns para alem do primeiro
+
+solucao:
+comparar com o que estava e ver que caso e que e
+preciso ser especial e porque

@@ -22,10 +22,7 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/ioctl.h>
-# include <curses.h>
 # include <fcntl.h>
-# include <term.h>
-# include <termcap.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>

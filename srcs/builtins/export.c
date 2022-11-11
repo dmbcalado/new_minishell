@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anfreire <anfreire@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 22:15:55 by dmendonc          #+#    #+#             */
-/*   Updated: 2022/09/10 02:35:40 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/07 16:01:34 by anfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	export_env(t_data *data)
 		smal[counter] = get_next(data, smal);
 	counter = -1;
 	while(++counter < len)
-		printf("declare -x %s\n", data->envp[smal[counter]]);
+		printf("%s\n", data->envp[smal[counter]]);
 	free(smal);
 }
 

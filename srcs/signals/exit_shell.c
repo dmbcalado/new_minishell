@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anfreire <anfreire@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 10:51:25 by anfreire          #+#    #+#             */
-/*   Updated: 2022/08/29 19:12:15 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/10/04 22:13:10 by anfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	exit_shell(t_data *data)
 {
-	if (!data->line || !ft_strncmp(data->line, "exit", 5))
+	if (!data->line)
 		exit_shell_sig(1);
 }
 

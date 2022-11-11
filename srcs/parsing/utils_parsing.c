@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 00:59:41 by dmendonc          #+#    #+#             */
-/*   Updated: 2022/09/10 02:41:47 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/10 22:45:04 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	how_many_paths(char const *s, char c)
 // Function returns the size of the full path to the executable file.
 
 // -----------------------------------------------------------------------------
-int	p_size(t_data *data, char* str, int i_p)
+int	p_size(t_data *data, char *str, int i_p)
 {
 	int		i;
 	int		j;
@@ -76,10 +76,10 @@ int	p_size(t_data *data, char* str, int i_p)
 	i = 0;
 	j = 0;
 	while (data->paths.paths[i_p][i])
-        i++;
+		i++;
 	while (str[j])
-        j++;
-	return(i + j);
+		j++;
+	return (i + j);
 }
 
 int	path_size(t_data *data, int index, int i_p)
@@ -90,10 +90,10 @@ int	path_size(t_data *data, int index, int i_p)
 	i = 0;
 	j = 0;
 	while (data->paths.paths[i_p][i])
-        i++;
+		i++;
 	while (data->cmd.cmdx[index][0][j])
-        j++;
-	return(i + j);
+		j++;
+	return (i + j);
 }
 
 void	stringcpy(char *dest, char *src)
@@ -115,7 +115,7 @@ void	stringcpy(char *dest, char *src)
 
 void	create_lists(t_data *data)
 {
-	data->built.builtins = (char **)malloc(8 * sizeof(char *));
+	data->built.builtins = (char **)malloc(9 * sizeof(char *));
 	data->redir.redir_lib = (char *)malloc(4 * sizeof(char));
 	get_str(data, "echo", 0);
 	get_str(data, "pwd", 1);
@@ -123,8 +123,9 @@ void	create_lists(t_data *data)
 	get_str(data, "export", 3);
 	get_str(data, "unset", 4);
 	get_str(data, "cd", 5);
-	get_str(data, "pwd", 6);
-	data->built.builtins[7] = NULL;
+	get_str(data, "./minishell", 6);
+	get_str(data, "exit", 7);
+	data->built.builtins[8] = NULL;
 	data->redir.redir_lib[3] = 0;
 	data->redir.redir_lib[0] = '|';
 	data->redir.redir_lib[1] = '<';
@@ -135,7 +136,7 @@ void	create_lists(t_data *data)
 
 void	get_str(t_data *data, char *str, int index)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -143,6 +144,6 @@ void	get_str(t_data *data, char *str, int index)
 	data->built.builtins[index] = (char *)malloc((i + 1) * sizeof(char));
 	data->built.builtins[index][i] = 0;
 	i = -1;
-	while(str[++i] != 0)
+	while (str[++i] != 0)
 		data->built.builtins[index][i] = str[i];
 }

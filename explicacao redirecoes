@@ -1,0 +1,43 @@
+TESTES:
+
+< infile.txt grep porque > output.txt > output2.txt < infile2.txt
+dmendonc@c2r2s4:~/minisheu$ cat output
+output2.txt  output.txt   
+dmendonc@c2r2s4:~/minisheu$ cat output2.txt 
+porque
+dmendonc@c2r2s4:~/minisheu$ < infile.txt grep porque > output.txt > output2.txt < infile2.txt < infile.txt
+dmendonc@c2r2s4:~/minisheu$ cat output2.txt 
+Não te fies na virgem, porque elas fingem e não dizem
+Dou e recebo e se eu bebo bué é porque saio ao meu avô
+Sou má goela porque eu saiu ao meu pai
+Se acordo tarde é porque eu saiu à minha mãe
+dmendonc@c2r2s4:~/minisheu$ < infile.txt grep porque >> output.txt > output2.txt < infile2.txt < infile.txt
+dmendonc@c2r2s4:~/minisheu$ cat output.txt 
+dmendonc@c2r2s4:~/minisheu$ cat output2.txt 
+Não te fies na virgem, porque elas fingem e não dizem
+Dou e recebo e se eu bebo bué é porque saio ao meu avô
+Sou má goela porque eu saiu ao meu pai
+Se acordo tarde é porque eu saiu à minha mãe
+dmendonc@c2r2s4:~/minisheu$ < infile.txt grep porque >> output.txt > output2.txt < infile2.txt < infile.txt^C
+dmendonc@c2r2s4:~/minisheu$ < infile.txt grep porque >> output.txt > output2.txt < infile2.txt << infile.txt
+maxima porque
+porque consegui perceber
+infile.txt
+dmendonc@c2r2s4:~/minisheu$ cat output2.txt
+maxima porque
+porque consegui perceber
+
+CONCLUSAO:
+
+DA PARA HAVER APENAS UM INPUT E UM OUTPUT FD PARA CADA COMANDO:
+
+EXEMPLO:
+
+< infile.txt grep porque >> output.txt > output2.txt < infile2.txt << infile.txt
+o grep porque vai correr apenas no heredoc que termina com o EOF:
+infile.txt
+
+Para o input, o STDIN_FILENO vai ser alterado para ser o fd do heredoc infile.txt.
+Para o output, o STDOUT_FILENO vai ser alterado para ser o fd do output2.txt. e nem passa pelo output.txt.
+
+

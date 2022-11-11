@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 01:04:26 by dmendonc          #+#    #+#             */
-/*   Updated: 2022/09/13 16:47:50 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:48:34 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 int	count_cmd_args(t_data *data, int i)
 {
 	int	count;
-	
+
 	count = 0;
-	while(data->par_line[++i])
+	while (data->par_line[++i])
 	{
-		if (builtin_detector (data, data->par_line[i]) == 1)
+		if (builtin_detector (data, data->par_line[i]) >= 0) //CHANGE!!
 			break ;
 		if (redir_detector (data, data->par_line[i]) > 0)
 			break ;
@@ -44,14 +44,14 @@ int	get_cmd_i(t_data *data, int index)
 
 	i = -1;
 	count = 0;
-	while(data->par_line[++i])
+	while (data->par_line[++i])
 	{
 		if (cmd_detector (data, data->par_line[i]) == 1)
 			count++;
 		if (count == index + 1)
 			break ;
 	}
-	return(i);
+	return (i);
 }
 
 void	parse_cmd(t_data *data, int index)
@@ -60,12 +60,12 @@ void	parse_cmd(t_data *data, int index)
 	int	j;
 	int	k;
 	int	count;
-	
+
+	j = -1;
 	i = get_cmd_i(data, index);
 	count = count_cmd_args(data, i);
 	data->cmd.cmdx[index] = (char **)malloc((count + 2) * sizeof(char *));
 	data->cmd.cmdx[index][count + 1] = NULL;
-	j = -1;
 	while (++j <= count)
 	{
 		k = 0;
@@ -91,12 +91,13 @@ int	acessing_cmd(t_data *data, int index)
 
 	i = -1;
 	c = 0;
-	while(data->paths.paths[c])
+	while (data->paths.paths[c])
 		c++;
 	while (++i < c)
 	{
 		path_join (data, index, i);
-		if (access (data->paths.path_cmd[index], X_OK) == 0)
+		if (access(data->paths.path_cmd[index], X_OK) == 0 && \
+		!is_dot_cmd(data->paths.path_cmd[index]))
 			return (1);
 		else
 			free (data->paths.path_cmd[index]);

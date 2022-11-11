@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anfreire <anfreire@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 21:07:19 by dmendonc          #+#    #+#             */
-/*   Updated: 2022/09/08 21:19:53 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/09/20 01:16:16 by anfreire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,22 @@ int	equal(t_data *data, char *string, int index)
 	{
 		if (string[i] != data->envp[index][i])
 			return(0);
+	}
+	return (1);
+}
+
+
+int	is_dot_cmd(char *str)
+{
+	int		i;
+	char	*ptr1;
+
+	ptr1 = strrchr(str, '/');
+	i = 0;
+	while (ptr1[++i])
+	{
+		if (ptr1[i] != '.')
+			return (0);
 	}
 	return (1);
 }
