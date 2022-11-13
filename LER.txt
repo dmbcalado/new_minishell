@@ -1,3 +1,6 @@
 ls | cat infile.txt | grep beef < infile2.txt >> output.txt | ls > output2.txt
 
 corre
+
+testar :
+ls | cat infile.txt | grep beef < infile2.txt << key >> output.txt | ls > output2.txt
