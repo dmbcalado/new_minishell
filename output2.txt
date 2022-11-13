@@ -1,4 +1,17 @@
+|
+explicacao redirecoes
+gnl
 header.h
+infile2.txt
+infile.txt
+LER.txt
+libft
+Makefile
 minishell
-header.h
-minishell
+outfile2.txt
+outfile.txt
+output2.txt
+output.txt
+README.md
+srcs
+Subject.pdf

@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 02:13:18 by dmendonc          #+#    #+#             */
-/*   Updated: 2022/09/17 00:58:43 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/13 04:26:49 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,27 @@ int	find_i_for_infile(t_data *data , int index)
 // we want the i for output2.txt.
 // -----------------------------------------------------------------------------
 
-int	find_i_for_outfile(t_data *data , int index)
+int	find_i_for_outfile(t_data *data, int index)
 {
 	int	i;
 	int	save;
-	int ind_c;
+	int	ind_c;
 
 	i = -1;
 	ind_c = -1;
-	while(++ind_c <= index)
+	save = 0;
+	while (++ind_c <= index)
 	{
-		save = 0;
-		while(data->par_line[++i] && redir_detector(data, data->par_line[i]) != 1)
+		while (data->par_line[++i] && \
+		redir_detector(data, data->par_line[i]) != 1)
 		{
 			if (redir_detector(data, data->par_line[i]) > 1)
 			{
-				if (redir_detector(data, data->par_line[i]) == 4)
-					save = i;
-				else if (redir_detector(data, data->par_line[i]) == 5)
+				if (redir_detector(data, data->par_line[i]) >= 4)
 					save = i;
 			}
 		}
 	}
+	printf("ind c %d \n last %d \n", ind_c, save);
 	return (save);
 }

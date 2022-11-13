@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:03:02 by anfreire          #+#    #+#             */
-/*   Updated: 2022/11/13 00:47:46 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/13 03:49:54 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,9 @@ int		compare_key(t_data *data, char *buffer, int len);
 
 //running the redirections
 int		redirect(t_data *data);
-int		exec_redirect(t_data *data, int index, int save);
+int		exec_in_redirect(t_data *data, int index, int save);
+int		exec_out_redirect(t_data *data, int index, int save);
+
 
 //SIGNALS
 void	sig_handler(int signum);

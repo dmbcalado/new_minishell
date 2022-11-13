@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmendonc <dmendonc@student.42lisboa.com>   +#+  +:+       +#+        */
+/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 12:21:49 by dmendonc          #+#    #+#             */
-/*   Updated: 2022/02/14 12:21:53 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/13 03:43:13 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
@@ -38,36 +39,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ptr[i] = '\0';
 	return (ptr);
 }
-
-/* int	main(void)
-{
-	char const			*string = "o pai ta on tipo neymar.";
-	char				*ptr;
-	int					cont;
-	unsigned int		go;
-	size_t				len;
-
-	cont = 0;
-	go = 25;
-	len = 40;
-	printf("\ninput:\n");
-	printf("\n");
-	while (*string != '\0')
-	{
-		printf("%c", *(char *)string);
-		string += sizeof(char);
-		cont++;
-	}
-	string -= sizeof(char) * cont;
-	ptr = ft_substr(string, go, len);
-	printf("\n");
-	printf("\nsubstring:\n");
-	printf("\n");
-	while (*ptr != '\0')
-	{
-		printf("%c", *(char *)ptr);
-		ptr += sizeof(char);
-		cont++;
-	}
-	printf("\n\n");
-} */

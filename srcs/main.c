@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 06:49:28 by anfreire          #+#    #+#             */
-/*   Updated: 2022/11/13 03:18:21 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/13 04:36:16 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,6 @@ int	main(int argc, char *argv[], char *envp[])
 			parse_alloc(&data);
 			if (redirect(&data) < 0)
 				continue ;
-			else
-				printf("redir made\n");
 			parse_cmds(&data);
 			brain(&data);
 			free_line_info(&data);

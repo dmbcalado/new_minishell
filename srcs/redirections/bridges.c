@@ -20,7 +20,6 @@ int	bridge_infiles(t_data *data, int index, int last)
 	
 	i = 0;
 	count = -1;
-	printf("entrou para dar bridge\n");
 	while(++count <= index)
 	{
 		while(data->par_line[i])
@@ -33,7 +32,7 @@ int	bridge_infiles(t_data *data, int index, int last)
 			}
 			if (ret > 1)
 			{
-				if (ret < 4 && i != last)
+				if (ret < 4 && i != last && count == index)
 				{
 					if(open(data->par_line[i + 1], O_RDONLY) < 0)
 					{
@@ -53,12 +52,12 @@ int	bridge_outfiles(t_data *data, int index, int last)
 	int	count;
 	int	i;
 	int	ret;
-	
+
 	i = 0;
 	count = -1;
 	while (++count <= index)
 	{
-		while(data->par_line[i])
+		while (data->par_line[i])
 		{
 			ret = redir_detector (data, data->par_line[i]);
 			if (ret == 1)
@@ -68,9 +67,9 @@ int	bridge_outfiles(t_data *data, int index, int last)
 			}
 			if (ret > 1)
 			{
-				if (ret > 3 && i != last)
+				if (ret > 3 && i != last && count == index)
 				{
-					printf("entrou para dar bridge a %s\n", data->par_line[i + 1]);
+					printf("%d entrou para dar bridge a %s\n", i, data->par_line[i + 1]);
 					if (open(data->par_line[i + 1], O_CREAT | O_RDWR | O_TRUNC, 777) < 0)
 						return (-1);
 				}

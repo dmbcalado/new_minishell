@@ -52,7 +52,7 @@ int	redirect(t_data *data)
 					if (ret == 2)
 					{
 						extract_input(data, index, i + 1);
-						if (exec_redirect(data, index, 2) < 0)
+						if (exec_in_redirect(data, index, 2) < 0)
 							return (-1);
 					}
 					else
@@ -68,14 +68,14 @@ int	redirect(t_data *data)
 					if (bridge_outfiles(data, index, i) < 0)
 						return (-1);
 					extract_output(data, index, i + 1);
-					if (ret == 3)
+					if (ret == 4)
 					{
-						if (exec_redirect(data, index, 4) < 0)
+						if (exec_out_redirect(data, index, 4) < 0)
 							return (-1);
 					}
 					else
 					{
-						if (exec_redirect(data, index, 5) < 0)
+						if (exec_out_redirect(data, index, 5) < 0)
 							return (-1);
 					}
 					flag_o++;
@@ -95,35 +95,45 @@ int	redirect(t_data *data)
 // task: reads the fd and if different then the standard, opens with the
 // corresponding flags.
 //------------------------------------------------------------------------------
-
-int	exec_redirect(t_data *data, int index, int save)
+int	exec_in_redirect(t_data *data, int index, int save)
 {
 	if (save == 2)
 	{
-		data->ids.inp_list[index] = open (data->redir.input[index], O_RDONLY);
+		data->ids.inp_list[index] = open (data->redir.input[index], \
+		O_RDONLY);
 		if (data->ids.inp_list[index] < 0)
 		{
-			printf ("Error: the file %s does not exist.", data->redir.input[index]);
+			printf ("Error: the file %s does not exist.", \
+			data->redir.input[index]);
 			return (-1);
 		}
 	}
-	if (save == 4)	//output
+	return (1);
+}
+
+int	exec_out_redirect(t_data *data, int index, int save)
+{
+	if (save == 4)
 	{
-		data->ids.outp_list[index] = open(data->redir.output[index], O_CREAT | O_TRUNC | O_RDWR, 0644);
-		if(data->ids.outp_list[index] < 1)
+		data->ids.outp_list[index] = open(data->redir.output[index], \
+		O_CREAT | O_TRUNC | O_RDWR, 0644);
+		if (data->ids.outp_list[index] < 1)
 		{
-			printf("Error: the file %s had issues on open().",data->redir.output[index]);
+			printf("Error: the file %s had issues on open().", \
+			data->redir.output[index]);
 			return (-1);
 		}
 	}
-	if (save == 5)	//output
+	if (save == 5)
 	{
-		data->ids.outp_list[index] = open(data->redir.output[index], O_CREAT | O_APPEND | O_RDWR, 0644); // VER FLAGS APPEND
-		if(data->ids.outp_list[index] < 1)
+		data->ids.outp_list[index] = open(data->redir.output[index], \
+		O_CREAT | O_APPEND | O_RDWR, 0644);
+		if (data->ids.outp_list[index] < 1)
 		{
-			printf("Error: the file %s had issues on open().",data->redir.output[index]);
+			printf("Error: the file %s had issues on open().", \
+			data->redir.output[index]);
 			return (-1);
 		}
 	}
-	return (0);
+	return (1);
 }
