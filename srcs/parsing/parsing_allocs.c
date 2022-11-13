@@ -95,20 +95,12 @@ void	parse_alloc(t_data *data)
 
 void	alloc_cmds(t_data *data)
 {
-	int	i;
-
-	i = -1;
 	if (data->cmd.cmd_nbr > 0)
 	{
-		data->ids.id = (int *)malloc(data->cmd.cmd_nbr * sizeof(int));
-		data->ids.pfd = (int **)malloc((data->cmd.cmd_nbr + 1) * sizeof(int *));
 		data->cmd.cmdx = (char ***)malloc((data->cmd.cmd_nbr + 1) \
 		* sizeof(char **));
 		data->paths.path_cmd = (char **)malloc((data->cmd.cmd_nbr + 1) \
 		* sizeof(char *));
-		while (++i < data->cmd.cmd_nbr)
-			data->ids.pfd[i] = (int *)malloc(2 * sizeof(int));
-		data->ids.pfd[data->cmd.cmd_nbr] = NULL;
 		data->cmd.cmdx[data->cmd.cmd_nbr] = NULL;
 		data->paths.path_cmd[data->cmd.cmd_nbr] = NULL;
 	}
@@ -125,18 +117,26 @@ void	alloc_redirections(t_data *data)
 	int	size;
 
 	size = data->cmd.cmd_nbr + data->built.builtin_n;
+	data->ids.id = (int *)malloc((size + 1) * sizeof(int));
+	data->ids.pfd = (int **)malloc((size + 1) * sizeof(int *));
 	data->redir.input = (char **)malloc((size + 1) * sizeof(char *));
 	data->redir.output = (char **)malloc((size + 1) * sizeof(char *));
 	data->ids.inp_list = (int *)malloc((size + 1) * sizeof(int *));
 	data->ids.outp_list = (int *)malloc((size + 1) * sizeof(int *));
 	data->redir.input[size] = NULL;
 	data->redir.output[size] = NULL;
+	data->ids.pfd[size] = NULL;
 	i = -1;
 	while (++i < size)
 	{
-			data->redir.input[i] = (char *)malloc(sizeof(char));
-			data->redir.output[i] = (char *)malloc(sizeof(char));
-			data->ids.inp_list[i] = STDIN_FILENO;
-			data->ids.outp_list[i] = STDOUT_FILENO;
+		data->ids.pfd[i] = (int *)malloc(2 * sizeof(int));
+		if (pipe(data->ids.pfd[i]) != 0)
+			return ;
+		data->redir.input[i] = (char *)malloc(sizeof(char));
+		data->redir.output[i] = (char *)malloc(sizeof(char));
+		data->ids.inp_list[i] = STDIN_FILENO;
+		data->ids.outp_list[i] = STDOUT_FILENO;
 	}
 }
+
+// tenho que meter os pipes com size + 1 e tava com cmd_nbr + 1

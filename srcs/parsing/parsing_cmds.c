@@ -6,14 +6,14 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 01:04:26 by dmendonc          #+#    #+#             */
-/*   Updated: 2022/11/10 19:48:34 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/13 01:16:50 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header.h"
 
 // -----------------------------------------------------------------------------
-// Function allocates all data gpaths.iven for the commands, and stores cmdx[][][]
+// Function allocates all data gpaths.iven for the commands, and stores cmdx.
 // matrix that has the format exemplified below:
 // cmdx[cmd n-1]+...  [0] = "ls"	;	[1] = "-a"
 // cmdx[cmd n]  +... [0] = "grep"	;	[1] = "hello"
@@ -26,7 +26,7 @@ int	count_cmd_args(t_data *data, int i)
 	count = 0;
 	while (data->par_line[++i])
 	{
-		if (builtin_detector (data, data->par_line[i]) >= 0) //CHANGE!!
+		if (builtin_detector (data, data->par_line[i]) >= 0)
 			break ;
 		if (redir_detector (data, data->par_line[i]) > 0)
 			break ;
@@ -76,6 +76,20 @@ void	parse_cmd(t_data *data, int index)
 		k = -1;
 		while (data->par_line[i][++k])
 			data->cmd.cmdx[index][j][k] = data->par_line[i][k];
+		i++;
+	}
+}
+
+void	parse_cmds(t_data *data)
+{
+	int	i;
+	int	cmds;
+
+	i = 0;
+	cmds = data->cmd.cmd_nbr + 1;
+	while (--cmds > 0)
+	{
+		parse_cmd (data, i);
 		i++;
 	}
 }

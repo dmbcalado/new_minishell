@@ -34,6 +34,8 @@ void	free_cmds(t_data *data)
 	while (data->ids.pfd[++i])
 		free(data->ids.pfd[i]);
 	free(data->ids.pfd);
+	i = -1;
+	free(data->ids.id);
 	data->ids.in_fd = STDIN_FILENO;
 	data->ids.out_fd = STDOUT_FILENO;
 }
@@ -43,12 +45,12 @@ void	free_line_info(t_data *data)
 	int	i;
 
 	i = -1;
-	//if (data->cmd.cmd_nbr > 0)
-		//free_cmds(data);
+	if (data->cmd.cmd_nbr > 0)
+		free_cmds(data);
 	while (data->par_line[++i])
 		free (data->par_line[i]);
 	free(data->par_line);
-	//free_builtins(data);
+	free_builtins(data);
 	free(data->redir.redir_lib);
 	i = -1;
 	while (data->paths.paths[++i])

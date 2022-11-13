@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   starting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/25 16:51:01 by dmendonc          #+#    #+#             */
-/*   Updated: 2022/11/13 00:35:28 by dmendonc         ###   ########.fr       */
+/*   Created: 2022/11/12 15:54:26 by dmendonc          #+#    #+#             */
+/*   Updated: 2022/11/12 15:55:03 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../header.h"
 
-size_t	ft_strlen(const char *str)
+void	starting(t_data *data, char *envp[])
 {
-	size_t	cont;
-
-	cont = 0;
-	while (str[cont] != '\0')
-	{
-		cont++;
-	}
-	return (cont);
+	signal (SIGQUIT, sig_ignore);
+	signal (SIGINT, sig_handler);
+	get_envp (data, envp);
+	data->line = NULL;
+	data->andre.exit = 0;
 }
-
-/*int	main(void)
-{
-	char	a[] = "aasadaswwdwdwdqwa";
-	char	*ptr;
-	int		contador;
-
-	ptr = a;
-	contador = ft_strlen(ptr);
-	printf("%d\n", contador);
-}*/

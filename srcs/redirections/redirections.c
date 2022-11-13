@@ -33,9 +33,9 @@ int	redirect(t_data *data)
 	flag_i = 0;
 	flag_o = 0;
 	size = data->cmd.cmd_nbr + data->built.builtin_n;
-	while(++index < size)
+	while (++index < size)
 	{
-		while(data->par_line[i])
+		while (data->par_line[i])
 		{
 			ret = redir_detector (data, data->par_line[i]);
 			if (ret == 1)
@@ -48,14 +48,14 @@ int	redirect(t_data *data)
 				if (ret < 4 && flag_i == 0)
 				{
 					if (bridge_infiles(data, index, i) < 0)
-						return(-1);
+						return (-1);
 					if (ret == 2)
 					{
 						extract_input(data, index, i + 1);
-						if (exec_redirect(data, index, i) < 0)
+						if (exec_redirect(data, index, 2) < 0)
 							return (-1);
 					}
-					else 
+					else
 					{
 						extract_hdockey(data, i + 1);
 						heredoc(data, index);
@@ -68,8 +68,16 @@ int	redirect(t_data *data)
 					if (bridge_outfiles(data, index, i) < 0)
 						return (-1);
 					extract_output(data, index, i + 1);
-					if (exec_redirect(data, index, i) < 0)
-						return (-1);
+					if (ret == 3)
+					{
+						if (exec_redirect(data, index, 4) < 0)
+							return (-1);
+					}
+					else
+					{
+						if (exec_redirect(data, index, 5) < 0)
+							return (-1);
+					}
 					flag_o++;
 				}
 			}
@@ -88,26 +96,14 @@ int	redirect(t_data *data)
 // corresponding flags.
 //------------------------------------------------------------------------------
 
-int	exec_redirect(t_data *data, int index, int i)
+int	exec_redirect(t_data *data, int index, int save)
 {
-	int save;
-
-	save = redir_detector(data, data->par_line[i]);
 	if (save == 2)
 	{
 		data->ids.inp_list[index] = open (data->redir.input[index], O_RDONLY);
-		if(data->ids.inp_list[index] < 0)
+		if (data->ids.inp_list[index] < 0)
 		{
-			printf("Error: the file %s does not exist.", data->redir.input[index]);
-			return (-1);
-		}	
-	}
-	if (save == 3)
-	{
-		data->ids.inp_list[index] = open (data->redir.input[index], O_RDONLY); // VER FLAGS HEREDOC
-		if(data->ids.inp_list[index] < 0)
-		{
-			printf("Error: the file %s does not exist.", data->redir.input[index]);
+			printf ("Error: the file %s does not exist.", data->redir.input[index]);
 			return (-1);
 		}
 	}
@@ -122,8 +118,8 @@ int	exec_redirect(t_data *data, int index, int i)
 	}
 	if (save == 5)	//output
 	{
-		data->ids.outp_list[index] = open(data->redir.output[index], O_CREAT | O_TRUNC | O_RDWR); // VER FLAGS APPEND
-		if(data->ids.outp_list[index] < 0)
+		data->ids.outp_list[index] = open(data->redir.output[index], O_CREAT | O_APPEND | O_RDWR, 0644); // VER FLAGS APPEND
+		if(data->ids.outp_list[index] < 1)
 		{
 			printf("Error: the file %s had issues on open().",data->redir.output[index]);
 			return (-1);

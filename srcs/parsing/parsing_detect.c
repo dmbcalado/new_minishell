@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 17:54:28 by dmendonc          #+#    #+#             */
-/*   Updated: 2022/11/07 21:31:33 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/13 01:08:33 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	full_detector(t_data *data, char *str)
 {
-	if (builtin_detector (data, str) >= 0) //CHANGE!!
+	if (builtin_detector (data, str) >= 0)
 		return (1);
 	else if (cmd_detector(data, str) == 1)
 		return (2);
@@ -25,29 +25,15 @@ int	full_detector(t_data *data, char *str)
 
 int	builtin_detector(t_data *data, char *str)
 {
-	// int	i;
 	int	j;
-	// int	size;
 
 	j = -1;
 	while (data->built.builtins[++j])
 	{
-		if (ft_strncmp(data->built.builtins[j], str, ft_strlen(str)) == 0) //CHANGE!!
+		if (ft_strncmp(data->built.builtins[j], str, ft_strlen(str)) == 0)
 			return (j);
-		// change
-		// size = 0;
-		// while(data->built.builtins[j][size])
-		// 	size++;
-		// i = -1;
-		// while(str[++i])
-		// {
-		// 	if(str[i] != data->built.builtins[j][i])
-		// 		break;
-		// 	else if(i == size - 1)
-		// 		return(j);
-		// }
 	}
-	return(-1);
+	return (-1);
 }
 
 // -----------------------------------------------------------------------------

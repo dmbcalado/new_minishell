@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_line_constructor.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfreire <anfreire@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:31:52 by anfreire          #+#    #+#             */
-/*   Updated: 2022/10/28 00:29:54 by anfreire         ###   ########.fr       */
+/*   Updated: 2022/11/13 00:23:00 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,5 @@ char	**build_list(int len, char **ptr, char *str, t_data *data)
 	}
 	else
 		ptr[len - 1] = realloc_string(ptr[len - 1], str, 1);
-
 	return (ptr);
 }

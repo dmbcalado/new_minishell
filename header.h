@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:03:02 by anfreire          #+#    #+#             */
-/*   Updated: 2022/11/10 22:13:17 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/13 00:47:46 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 // Libraries in the header below
 
-# include "./libft/libft.h"
+# include "libft/libft.h"
 # include "./gnl/get_next_line.h"
 
 // struct dos builtins
@@ -33,6 +33,7 @@ typedef struct s_built
 
 typedef struct s_redir
 {
+	int		r_counter;
 	int		input_n;
 	int		output_n;
 	int		append_n;
@@ -109,6 +110,8 @@ typedef struct s_data
 	t_andre	andre;
 }				t_data;
 
+void	starting(t_data *data, char *envp[]);
+
 //UTILS
 // utils
 int		len_str(char *str);
@@ -166,12 +169,13 @@ void	path_join(t_data *data, int index, int i_p);
 
 //COMMANDS
 //parsing and testing if its executable
+void	parse_cmds(t_data *data);
 void	parse_cmd(t_data *data, int index);
 int		acessing_cmd(t_data *data, int index);
 
 //running commands
 void	run_processes(t_data *data, int index);
-void	run_command(t_data *data, int index);
+void	run_command(t_data *data, int index, int cmd_i);
 void	run_father(t_data *data, int index);
 void	run_one_father(t_data *data);
 void	run_child(t_data *data, int index);
@@ -192,7 +196,7 @@ void	unset(t_data *data, char *str);
 void	export(t_data *data, int index);
 void	export_env(t_data *data);
 void	export_var(t_data *data, char *str);
-void	exec_builtin(t_data *data, int i);
+void	exec_builtin(t_data *data, int index, int i);
 
 //cd, echo, and pwd, minishell and exit builtins
 void	b_echo(t_data *data);
@@ -252,10 +256,10 @@ void	exit_shell(t_data *data);
 
 //MAIN
 void	brain(t_data *data);
-void	braining_cmds(t_data *data, int index);
 int		count_cmds_left(t_data *data, int i);
 
 //FREES
+void	close_files(t_data *data);
 void	free_cmds(t_data *data);
 void	free_builtins(t_data *data);
 void	free_line_info(t_data *data);
