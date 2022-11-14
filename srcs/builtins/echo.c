@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfreire <anfreire@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 20:36:36 by anfreire          #+#    #+#             */
-/*   Updated: 2022/10/10 20:04:22 by anfreire         ###   ########.fr       */
+/*   Updated: 2022/11/14 23:05:42 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,21 @@ void	echo_with_n_flag(t_data *data)
 	data->andre.flag = 0;
 }
 
-void	b_echo(t_data *data)
+void	b_echo(t_data *data, int index)
 {
-	int 	i;
+	int 	j;
 	char	flag[3];
 
-	i = 0;
+	j = index;
 	flag[0] = '-';
 	flag[1] = 'n';
 	flag[2] = '\0';
-	if (!data->par_line[1])
+	if (!data->par_line[index + 1])
 	{
 		printf("\n");
 		return ;
 	}
-	if (ft_strncmp(data->par_line[1], flag, 3) == 0)
+	if (ft_strncmp(data->par_line[index + 1], flag, 3) == 0)
 	{
 		data->andre.flag = 1;
 		data->andre.args = 0;
@@ -52,10 +52,11 @@ void	b_echo(t_data *data)
 	}
 	else
 	{
-		while(data->par_line[++i])
+		while (data->par_line[++j] && \
+		redir_detector(data, data->par_line[j]) != 1)
 		{
-			printf("%s", data->par_line[i]);
-			if (data->par_line[i + 1])
+			printf("%s", data->par_line[j]);
+			if (data->par_line[j + 1])
 				printf(" ");
 		}	
 		printf("\n");

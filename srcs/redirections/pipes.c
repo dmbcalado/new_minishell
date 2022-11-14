@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:26:23 by ratinhosujo       #+#    #+#             */
-/*   Updated: 2022/11/13 00:15:29 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/14 23:21:16 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	piping_first(t_data *data, int index)
 		dup2(data->ids.outp_list[index], STDOUT_FILENO);
 		data->redir.output_c++;
 	}
-	else if (data->cmd.cmd_nbr != 1)
+	else if ((data->cmd.cmd_nbr + data->built.builtin_n) != 1)
 		dup2(data->ids.pfd[index][1], STDOUT_FILENO);
 }
 

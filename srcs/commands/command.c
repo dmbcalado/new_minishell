@@ -24,7 +24,7 @@ void	run_command(t_data *data, int index, int cmd_i)
 	{
 		if (index == 0)
 			piping_first(data, index);
-		else if (index == data->cmd.cmd_nbr + data->built.builtin_n - 1) // esta aqui o segredo
+		else if (index == data->cmd.cmd_nbr + data->built.builtin_n - 1)
 			piping_last(data, index);
 		else
 		{

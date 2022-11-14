@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 00:03:02 by anfreire          #+#    #+#             */
-/*   Updated: 2022/11/14 19:45:11 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/14 23:09:19 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,10 +197,10 @@ void	export(t_data *data, int index);
 void	export_env(t_data *data);
 void	export_var(t_data *data, char *str);
 void	exec_builtin(t_data *data, int index, int i);
-void	execve_builtin(t_data *data, int jndex);
+void	execve_builtin(t_data *data, int jndex, int i);
 
 //cd, echo, and pwd, minishell and exit builtins
-void	b_echo(t_data *data);
+void	b_echo(t_data *data, int index);
 void	echo_with_n_flag(t_data *data);
 void	b_pwd(void);
 void	b_cd(t_data *data);
