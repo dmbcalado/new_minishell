@@ -1,2 +1,17 @@
 Mas ta-se bem não há beef nunca houve desde novo
 Mas ta-se bem não há beef nunca houve desde novo
+Mas ta-se bem não há beef nunca houve desde novo
+Mas ta-se bem não há beef nunca houve desde novo
+Mas ta-se bem não há beef nunca houve desde novo
+Mas ta-se bem não há beef nunca houve desde novo
+Mas ta-se bem não há beef nunca houve desde novo
+Mas ta-se bem não há beef nunca houve desde novo
+Mas ta-se bem não há beef nunca houve desde novo
+Mas ta-se bem não há beef nunca houve desde novo
+ls | cat infile.txt | < infile2.txt grep beef  >> output.txt | ls > output2.txtMas ta-se bem não há beef nunca houve desde novo
+Mas ta-se bem não há beef nunca houve desde novo
+ls
+ls
+Mas ta-se bem não há beef nunca houve desde novo
+beef
+beef

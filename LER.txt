@@ -1,4 +1,4 @@
-ls | cat infile.txt | grep beef < infile2.txt >> output.txt | ls > output2.txt
+ls | cat infile.txt | < infile2.txt grep beef  >> output.txt | ls > output2.txt
 
 corre
 

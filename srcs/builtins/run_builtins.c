@@ -6,11 +6,13 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:35:12 by dmendonc          #+#    #+#             */
-/*   Updated: 2022/11/13 00:47:30 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:42:47 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header.h"
+
+extern int	g_exit;
 
 void	exec_builtin(t_data *data, int index, int i)
 {
@@ -18,7 +20,7 @@ void	exec_builtin(t_data *data, int index, int i)
 
 	jndex = builtin_detector(data, data->par_line[i]);
 	data->ids.id[index] = fork();
-	if ( data->ids.id[index] == 0)
+	if (data->ids.id[index] == 0)
 	{
 		if (index == 0)
 			piping_first(data, index);
@@ -27,9 +29,15 @@ void	exec_builtin(t_data *data, int index, int i)
 		else
 		{
 			redirecting_input(data, index);
-			redirecting_output(data,index);
+			redirecting_output(data, index);
 		}
+		execve_builtin(data, index, jndex);
+		exit(g_exit);
 	}
+}
+
+void	execve_builtin(t_data *data, int index, int jndex)
+{
 	if (jndex == 0)
 		b_echo(data);
 	else if (jndex == 1)
@@ -43,7 +51,7 @@ void	exec_builtin(t_data *data, int index, int i)
 	else if (jndex == 5)
 		b_cd(data);
 	else if (jndex == 6)
-		run_minishell(data);
+		run_minishell(data, index);
 	else if (jndex == 7)
 		exit_minishell(data);
 }

@@ -6,13 +6,13 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 06:49:28 by anfreire          #+#    #+#             */
-/*   Updated: 2022/11/13 04:36:16 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:37:20 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-int	walk_till_pipe(t_data *data, int i)
+int	walk_till_executable(t_data *data, int i)
 {
 	int	len;
 
@@ -34,6 +34,7 @@ int	walk_till_pipe(t_data *data, int i)
 	}
 	if (i == len)
 		return (-1);
+	printf("%s\n", data->par_line[i]);
 	return (i - 1);
 }
 
@@ -60,7 +61,7 @@ void	brain(t_data *data)
 			data->cmd.c_counter++;
 			data->redir.r_counter++;
 		}
-		i = walk_till_pipe(data, i);
+		i = walk_till_executable(data, i);
 		if (i < 0)
 			break ;
 	}
@@ -91,11 +92,10 @@ void	close_files(t_data *data)
 	if (data->andre.exit > 256)
 	{
 		while (data->andre.exit > 256)
-		data->andre.exit /= 256;
+			data->andre.exit /= 256;
 	}
 	WEXITSTATUS(data->andre.exit);
 }
-
 
 int	main(int argc, char *argv[], char *envp[])
 {

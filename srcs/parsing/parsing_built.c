@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 23:07:12 by dmendonc          #+#    #+#             */
-/*   Updated: 2022/11/13 01:10:28 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:24:40 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ void	built_builting(t_data *data, int i, int index)
 	len = -1;
 	while (data->par_line[i][++len])
 		data->built.builtin[index][i][len] = data->par_line[i][len];
+	printf("data->built.builtin[%d][%d] : %s\n", index, i, data->built.builtin[index][i]);
 }

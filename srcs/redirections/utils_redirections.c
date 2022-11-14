@@ -6,13 +6,13 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 02:13:18 by dmendonc          #+#    #+#             */
-/*   Updated: 2022/11/13 04:26:49 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:26:04 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../header.h"
 
-void reset_counters(t_data *data)
+void	reset_counters(t_data *data)
 {
 	data->redir.input_c = 0;
 	data->redir.output_c = 0;
@@ -26,7 +26,7 @@ void reset_counters(t_data *data)
 // we want the i for infile.txt.
 // -----------------------------------------------------------------------------
 
-int	find_i_for_infile(t_data *data , int index)
+int	find_i_for_infile(t_data *data, int index)
 {
 	int	i;
 	int	save;
@@ -34,10 +34,11 @@ int	find_i_for_infile(t_data *data , int index)
 
 	i = -1;
 	ind_c = -1;
-	while(++ind_c <= index)
+	while (++ind_c <= index)
 	{
 		save = 0;
-		while(data->par_line[++i] && redir_detector(data, data->par_line[i]) != 1)
+		while (data->par_line[++i] && redir_detector(data, data->par_line[i]) \
+		!= 1)
 		{
 			if (redir_detector(data, data->par_line[i]) > 1)
 			{
@@ -80,6 +81,5 @@ int	find_i_for_outfile(t_data *data, int index)
 			}
 		}
 	}
-	printf("ind c %d \n last %d \n", ind_c, save);
 	return (save);
 }

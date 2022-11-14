@@ -14,7 +14,7 @@
 
 void	run_command(t_data *data, int index, int cmd_i)
 {
-	if (acessing_cmd(data, index) != 1)
+	if (acessing_cmd(data, cmd_i) != 1)
 	{
 		write(2, "Error on acessing the cmd\n", 27);
 		return ;
