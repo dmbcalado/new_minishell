@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:35:12 by dmendonc          #+#    #+#             */
-/*   Updated: 2022/11/14 23:22:56 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/15 00:05:41 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,20 @@ int	g_exit;
 
 void	exec_builtin(t_data *data, int index, int i)
 {
+	int	j;
 	int	jndex;
 
+	j = -1;
 	jndex = builtin_detector(data, data->par_line[i]);
-	printf("BUILTIN %d\n", jndex);
 	if (jndex < 6 && jndex >= 0)
 	{
+		data->redir.r_counter++;
 		data->ids.id[index] = fork();
 		if (data->ids.id[index] == 0)
 		{
 			if (index == 0)
 				piping_first(data, index);
-			else if (index == data->cmd.cmd_nbr + data->built.builtin_n + 1)
+			else if (index == data->cmd.cmd_nbr + data->built.builtin_n - 1)
 				piping_last(data, index);
 			else
 			{
@@ -35,6 +37,9 @@ void	exec_builtin(t_data *data, int index, int i)
 				redirecting_output(data, index);
 			}
 			execve_builtin(data, jndex, i);
+			while(data->ids.pfd[++j])
+				free(data->ids.pfd[j]);
+			free(data->ids.id);
 			exit(g_exit);
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anfreire <anfreire@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 21:53:19 by anfreire          #+#    #+#             */
-/*   Updated: 2022/10/10 21:38:03 by anfreire         ###   ########.fr       */
+/*   Updated: 2022/11/14 23:38:37 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ void	exit_minishell(t_data *data)
 	int	args;
 
 	args = 0;
-	while(data->par_line[args])
+	while (data->par_line[args])
 		args++;
-	if(args >= 2)
+	if (args >= 2)
 	{
 		if (!is_string_digit(data->par_line[1]))
 		{
-			printf("minishell: exit: %s: numeric argument required\n", data->par_line[1]);
+			printf ("minishell: exit: %s: numeric argument required\n", data->par_line[1]);
 			exit(2);
 		}
 		else if (args == 2)
@@ -97,6 +97,7 @@ void	exit_minishell(t_data *data)
 		printf("minishell: exit: too many arguments\n");
 		exit(1);
 	}
+	free_line_info(data);
 	printf("exit\n");
 	exit(0);
 }

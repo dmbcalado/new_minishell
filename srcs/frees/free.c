@@ -58,7 +58,7 @@ void	free_line_info(t_data *data)
 	free (data->paths.paths);
 	free (data->paths.p_str);
 	i = -1;
-	while(data->redir.input[++i])
+	while (data->redir.input[++i])
 		free(data->redir.input[i]);
 	free(data->redir.input);
 	i = -1;

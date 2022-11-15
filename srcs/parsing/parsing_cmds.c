@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 01:04:26 by dmendonc          #+#    #+#             */
-/*   Updated: 2022/11/13 01:16:50 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/14 23:59:54 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int	get_cmd_i(t_data *data, int index)
 	while (data->par_line[++i])
 	{
 		if (cmd_detector (data, data->par_line[i]) == 1)
-			count++;
+			if (builtin_detector(data, data->par_line[i]) == -1)
+				count++;
 		if (count == index + 1)
 			break ;
 	}

@@ -6,7 +6,7 @@
 /*   By: dmendonc <dmendonc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 06:49:28 by anfreire          #+#    #+#             */
-/*   Updated: 2022/11/14 23:06:06 by dmendonc         ###   ########.fr       */
+/*   Updated: 2022/11/15 00:06:24 by dmendonc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	walk_till_executable(t_data *data, int i)
 	}
 	if (i == len)
 		return (-1);
-	printf("%s\n", data->par_line[i]);
 	return (i - 1);
 }
 
@@ -52,7 +51,6 @@ void	brain(t_data *data)
 			parse_builtin(data, i, data->built.b_counter);
 			exec_builtin(data, data->redir.r_counter, i);
 			data->built.b_counter++;
-			data->redir.r_counter++;
 		}
 		else if (cmd_detector(data, data->par_line[i]) == 1 && \
 		data->paths.p_str != NULL)

@@ -117,7 +117,7 @@ void	alloc_redirections(t_data *data)
 	int	size;
 
 	size = data->cmd.cmd_nbr + data->built.builtin_n;
-	data->ids.id = (int *)malloc((size + 1) * sizeof(int));
+	data->ids.id = (int *)malloc(size * sizeof(int));
 	data->ids.pfd = (int **)malloc((size + 1) * sizeof(int *));
 	data->redir.input = (char **)malloc((size + 1) * sizeof(char *));
 	data->redir.output = (char **)malloc((size + 1) * sizeof(char *));
