@@ -72,19 +72,19 @@ void	free_line_info(t_data *data)
 void	free_builtins(t_data *data)
 {
 	int	i;
-	int	j;
+	//int	j;
 
 	if (data->built.builtin_n > 0)
 	{
 		i = -1;
-		while (data->built.builtin[++i])
+/* 		while (data->built.builtin[++i] != NULL)
 		{
 			j = -1;
-			while (data->built.builtin[i][++j])
-				free (data->built.builtin[i][j]);
+			while (data->built.builtin[i][++j] != NULL)
+				free(data->built.builtin[i][j]);
 			free (data->built.builtin[i]);
 		}
-		free (data->built.builtin);
+		free (data->built.builtin); */
 	}
 	i = -1;
 	while (data->built.builtins[++i])

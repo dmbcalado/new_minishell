@@ -1,6 +1,7 @@
-ls | cat infile.txt | < infile2.txt grep beef  >> output.txt | ls > output2.txt
+Falta:
 
-corre
+ls | echo bola | wc nao ter leaks
 
-testar :
-ls | cat infile.txt | grep beef < infile2.txt << key >> output.txt | ls > output2.txt
+true paths
+
+command not found
